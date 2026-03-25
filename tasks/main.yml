@@ -12,7 +12,7 @@
       'awx_token' must be defined and non-empty.
       Pass it as an encrypted extra variable or via a custom AWX credential.
     success_msg: "awx_token is defined."
-  no_log: true
+  no_log: false
 
 - name: Validate required variable — inventory_host
   ansible.builtin.assert:
