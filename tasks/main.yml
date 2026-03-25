@@ -1,0 +1,36 @@
+---
+# tasks/main.yml
+# Entry point for ansible-role-fetch-endpoint-credentials.
+# This role MUST run on localhost (AWX Tower), not on the remote endpoint.
+
+- name: Validate required variable — awx_token
+  ansible.builtin.assert:
+    that:
+      - awx_token is defined
+      - awx_token | length > 0
+    fail_msg: >-
+      'awx_token' must be defined and non-empty.
+      Pass it as an encrypted extra variable or via a custom AWX credential.
+    success_msg: "awx_token is defined."
+  no_log: true
+
+- name: Validate required variable — inventory_host
+  ansible.builtin.assert:
+    that:
+      - inventory_host is defined
+      - inventory_host | length > 0
+    fail_msg: >-
+      'inventory_host' must be defined and non-empty.
+      Set it as an extra variable in the AWX job template (e.g. driven by the Limit field).
+
+- name: Validate inventory_host exists in hostvars
+  ansible.builtin.assert:
+    that:
+      - inventory_host in hostvars
+    fail_msg: >-
+      Host '{{ inventory_host }}' was not found in hostvars.
+      Ensure the host is present in the AWX inventory attached to this job template
+      and that 'inventory_host' matches the hostname exactly as it appears in that inventory.
+
+- name: Fetch and attach endpoint credential to job template
+  ansible.builtin.include_tasks: fetch_credentials.yml

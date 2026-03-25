@@ -1,0 +1,28 @@
+---
+# defaults/main.yml
+# Default variables for ansible-role-fetch-endpoint-credentials
+
+# AWX Tower base URL (no trailing slash)
+awx_host: "https://awx.local"
+
+# Whether to validate SSL certificates when calling the AWX API
+awx_validate_certs: false
+
+# Suffix pattern used to identify the credential variable in endpoint host_vars.
+# Any host variable whose name ends with this suffix will be treated as the
+# credential name to look up in AWX.
+credential_variable_suffix: "_credential"
+
+# ---------------------------------------------------------------------------
+# The following variables have NO defaults and MUST be supplied at runtime:
+#
+#   awx_token        - AWX OAuth2 Bearer token used to authenticate API calls.
+#                      Pass via an AWX credential of type "Custom Credential"
+#                      or as an encrypted extra variable.
+#                      Example:  awx_token: "{{ lookup('env', 'AWX_TOKEN') }}"
+#
+#   inventory_host   - The short hostname (as it appears in the AWX inventory)
+#                      of the endpoint whose host variables will be inspected.
+#                      Set this as an extra variable in the AWX job template,
+#                      typically driven by the job's "Limit" field.
+# ---------------------------------------------------------------------------

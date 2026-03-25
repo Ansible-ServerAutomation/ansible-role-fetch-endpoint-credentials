@@ -1,0 +1,45 @@
+# Ansible runtime artifacts
+*.retry
+*.pyc
+__pycache__/
+*.pyo
+
+# Sensitive files — never commit credentials or tokens
+vault_password*
+.vault_pass*
+*.vault
+*.secret
+.env
+.env.*
+
+# Ansible temporary / cache directories
+.cache/
+.tmp/
+temp/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Editor and IDE artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS metadata
+.DS_Store
+
+# Logs
+*.log
+
+# Test results
+tests/output/
+molecule/.cache/
+molecule/*/.cache/
+molecule/*/molecule.yml.bak
+
+# Molecule ephemeral directories
+molecule/*/ephemeral/

@@ -1,0 +1,29 @@
+---
+# meta/main.yml
+galaxy_info:
+  author: Ansible-ServerAutomation
+  description: >
+    Fetches the AWX credential name from a target endpoint's host variables
+    (any variable ending with _credential) and attaches that credential to
+    the currently running AWX job template before subsequent roles execute.
+  license: MIT
+  min_ansible_version: "2.9"
+
+  platforms:
+    - name: EL
+      versions:
+        - "7"
+        - "8"
+        - "9"
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+
+  galaxy_tags:
+    - awx
+    - tower
+    - credentials
+    - automation
+
+dependencies: []
