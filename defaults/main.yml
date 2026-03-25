@@ -13,6 +13,10 @@ awx_validate_certs: false
 # credential name to look up in AWX.
 credential_variable_suffix: "_credential"
 
+# AWX Tower Token
+awx_token: "{{ lookup('env', 'AWX_TOKEN') }}"
+
+
 # ---------------------------------------------------------------------------
 # The following variables have NO defaults and MUST be supplied at runtime:
 #
